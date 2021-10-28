@@ -378,10 +378,7 @@ runExample <- function(example = c("annotator", "microphone", "plugins", "decora
 #'
 #' @import shiny
 #' @export
-.onLoad <- function(){
-  annotations_folder = getwd()
-}
-annotator_app <- function(wavs_folder, annotations_folder, labels = NULL) {
+annotator_app <- function(wavs_folder, annotations_folder = "Documents/Political-Science-Research/", labels = NULL) {
   wavs_folder <- normalizePath(wavs_folder) # system.file("wav", package = "wavesurfer")
   annotation_folder <- normalizePath(annotations_folder) #tempdir()
 
