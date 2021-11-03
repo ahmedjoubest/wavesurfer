@@ -371,11 +371,11 @@ runExample <- function(example = c("annotator", "microphone", "plugins", "decora
   shiny::runApp(paste0(appDir, "/", example[1], ".R"), display.mode = display.mode)
 }
 
-#' anotador_app
+#' annotator_app
 #'
 #' @param wavs_folder
 #' @param annotations_folder
-#'
+#' 
 #' @import shiny
 #' @export
 annotator_app <- function(wavs_folder, annotations_folder, labels = NULL) {
