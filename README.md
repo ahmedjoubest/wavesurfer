@@ -23,7 +23,7 @@ R package.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("lingechun/wavesurfer")
+remotes::install_github("lingechun/wavesurfer@master")
 ```
 
 ## Using in Shiny
@@ -42,6 +42,7 @@ annotating their audio. It requires two inputs:
 
 ``` r
 # This is a working code!
+library(wavesurfer)
 annotator_app(
   wavs_folder = system.file("wav", package = "wavesurfer"), 
   annotations_folder = tempdir()
