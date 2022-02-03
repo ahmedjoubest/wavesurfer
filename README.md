@@ -28,33 +28,6 @@ remotes::install_github("Athospd/wavesurfer")
 
 ## Using in Shiny
 
-Usage at shiny app:
-
-``` r
-library(wavesurfer)
-library(shiny)
-
-ui <- fluidPage(
-  wavesurferOutput("my_ws"),
-  tags$p("Press spacebar to toggle play/pause."),
-  actionButton("mute", "Mute", icon = icon("volume-off"))
-)
-
-server <- function(input, output, session) {
-  output$my_ws <- renderWavesurfer({
-    wavesurfer(audio = "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3") %>%
-      ws_set_wave_color('#5511aa') %>%
-      ws_spectrogram() %>%
-      ws_cursor()
-  })
-  
-  observeEvent(input$mute, {
-    ws_toggle_mute("my_ws")
-  })
-}
-
-shinyApp(ui = ui, server = server)
-```
 
 ## annotator\_app()
 
@@ -87,28 +60,6 @@ wavesurfer::runExample("annotator")
 ```
 
 <img src="inst/img/annotator.gif">
-
-### Plugins
-
-live app:
-[athos.shinyapps.io/wavesurfer\_plugins/](https://athos.shinyapps.io/wavesurfer_plugins/)
-
-``` r
-wavesurfer::runExample("plugins")
-```
-
-<img src="inst/img/plugins.gif">
-
-### Wave Decorations
-
-live app:
-[athos.shinyapps.io/wavesurfer\_decoration/](https://athos.shinyapps.io/wavesurfer_decoration/)
-
-``` r
-wavesurfer::runExample("decoration")
-```
-
-<img src="inst/img/decoration.gif">
 
 ## Acknowledgement
 
