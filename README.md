@@ -23,7 +23,7 @@ R package.
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("Athospd/wavesurfer")
+remotes::install_github("lingechun/wavesurfer")
 ```
 
 ## Using in Shiny
