@@ -28,7 +28,7 @@ An interactive soundwave player and visualizer with rich set of plugins. It work
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("Athospd/wavesurfer")
+remotes::install_github("lingechun/wavesurfer")
 ```
 ## Using in Shiny
 
