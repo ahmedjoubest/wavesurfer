@@ -60,7 +60,7 @@ live app:
 wavesurfer::runExample("annotator")
 ```
 
-<img src="inst/img/annotator2.gif">
+<img src="inst/img/annotator3.gif">
 
 ## Acknowledgement
 
