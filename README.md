@@ -19,48 +19,44 @@ interface of [‘wavesurfer.js’](https://wavesurfer-js.org) JavaScript
 library and it is based on [‘htmlwidgets’](http://www.htmlwidgets.org/)
 R package.
 
-## Installation
+<img src="inst/img/annotator3.gif">
+
+## Installation and Using in R
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("lingechun/wavesurfer@master")
+
+library(wavesurfer)
+annotator_app(
+  wavs_folder = " ", 
+  annotations_folder = " "
+)
 ```
-
-## Using in Shiny
-
-
-## annotator\_app()
 
 The goal of `annotator_app()` is to provide an quick way to one start
 annotating their audio. It requires two inputs:
 
-  - `wavs_folder` a string with the path to the wave files folder.
-  - `annotations_folder` a string with where to store the annotations
-    (as a `.rds` contaning a `tibble`)
+  - `wavs_folder` a string with the path to the wave files folder;
+  - `annotations_folder` a string with where to store the annotations.
 
 <!-- end list -->
 
-``` r
-# This is a working code!
-library(wavesurfer)
-annotator_app(
-  wavs_folder = system.file("wav", package = "wavesurfer"), 
-  annotations_folder = tempdir()
-)
-```
 
-## Live examples
 
-### Annotator
+## Annotating data
 
-live app:
-[athos.shinyapps.io/wavesurfer\_annotator/](https://athos.shinyapps.io/wavesurfer_annotator/)
+Running the above codes, you will be re-directed to a browser. To annotate audio, please refer to the following steps.
 
-``` r
-wavesurfer::runExample("annotator")
-```
 
-<img src="inst/img/annotator3.gif">
+
+Step 1: Choose an audio file to begin with. 
+
+<img src="inst/img/Step1.png">
+
+Step 2: Drag on the black area above the spectrogram to select the start and end of the region to be labelled. Also, give a name to the label. You may use the same la
+
+<img src="inst/img/Step2.png">
 
 ## Acknowledgement
 
