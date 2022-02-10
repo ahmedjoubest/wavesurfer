@@ -54,11 +54,11 @@ Step 1: Choose an audio file to begin with.
 
 <img src="inst/img/Step1.png">
 
-Step 2: Drag on the black area above the spectrogram to select the start and end of the region to be labelled. Also, give a name to the label. 
+Step 2: Drag on the black area above the spectrogram to select the start and end of the region to be labelled. Also, type a name to the label at the box under "Region labeller". 
 
 <img src="inst/img/Step2.png">
 
-Step 3: When finishing the annotating of an audio file, click Save. 
+Step 3: When finishing annotating an audio file, click "Save". You may also delete the annotation by clicking "Clear all regions".
 
 <img src="inst/img/Step3.png">
 
