@@ -70,7 +70,7 @@ Step 1: Sign up or login an account on https://www.rstudio.com/products/shinyapp
 
 Step 2: Connect Rstudio to shinyapps.io account using the following codes:
 
-```
+```r
 install.packages('rsconnect')
 library(rsconnect)
 setAccountInfo(name='', 
@@ -81,9 +81,7 @@ setAccountInfo(name='',
 which requires three input:
 
      - `name` a string of your shinyapps.io account name;
-     
-     - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);
-     
+     - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);    
      - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
           
 
