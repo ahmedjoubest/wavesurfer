@@ -62,6 +62,13 @@ Step 3: When finishing annotating an audio file, click "Save". You may also dele
 
 <img src="inst/img/Step3.png">
 
+## Deploying on the Web
+
+You may deploy the app on a website. 
+
+Step 1: Sign up an account on https://www.rstudio.com/products/shinyapps/
+
+
 ## Acknowledgement
 
 The main actors that made this package possible were:
