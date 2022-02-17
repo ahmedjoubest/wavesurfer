@@ -66,7 +66,9 @@ Step 3: When finishing annotating an audio file, click "Save". You may also dele
 
 You may deploy the app on a website. 
 
-Step 1: Sign up an account on https://www.rstudio.com/products/shinyapps/
+Step 1: Sign up or login an account on https://www.rstudio.com/products/shinyapps/.
+
+Step 2: Connect Rstudio to shinyapps.io account.
 
 
 ## Acknowledgement
