@@ -60,7 +60,7 @@ Step 2: Drag on the black area above the spectrogram to select the start and end
 
 Step 3: When finishing annotating an audio file, click "Save". You may also delete the annotation by clicking "Clear all regions".
 
-<img src="inst/img/Step3.png" width="200" height="200">
+<img src="inst/img/Step3.png" width="200">
 
 ## Deploying on the Web
 
