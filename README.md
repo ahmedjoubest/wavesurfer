@@ -87,7 +87,7 @@ which requires three inputs:
 
 Step 3: Download the folder `annotator` to your local computer. Open the subfolder `sounds-->wave_files` and add audio files. 
 
-Step 4: Open the `app.R` and click on icon in read circle to publish the app. You will be directed to a window whi
+Step 4: Open the `app.R` and click on icon in read circle. You will be directed to a window as shown in the picture below. To publish the app, please check both app.R and sounds, and hit `Publish`. The process may take a while, depending on the size of audio files. When completing, you will obtain a link of the published app. 
 
 <img src="inst/img/publish window.png" width="600"> 
 
