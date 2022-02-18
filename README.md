@@ -87,9 +87,9 @@ which requires three inputs:
 
 Step 3: Download the folder `annotator` to your local computer. Open the subfolder `sounds-->wave_files` and add audio files. 
 
-Step 4: Open the `app.R` and click <img src="inst/img/publish icon.png" width="10"> on the top right
+Step 4: Open the `app.R` and click on icon in read circle to publish the app. You will be directed to a window whi
 
-
+<img src="inst/img/publish window.png" width="600"> 
 
 
 
