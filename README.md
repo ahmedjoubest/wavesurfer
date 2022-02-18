@@ -78,13 +78,14 @@ setAccountInfo(name='',
                secret='')
 ```
 
+
 which requires three input:
 
-     - `name` a string of your shinyapps.io account name;
-     - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);    
-     - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
-          
+  - `name` a string of your shinyapps.io account name;
+  - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);
+  - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
 
+<!-- end list -->
 
 ## Acknowledgement
 
