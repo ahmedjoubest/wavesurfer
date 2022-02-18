@@ -85,7 +85,7 @@ which requires three inputs:
   - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);
   - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
 
-Step 3: Download the folder `annotator` to your local computer. Open the subfolder `sounds-->wave_files` and add audio files. 
+Step 3: Download the folder `annotator` to your local computer. Create a subfolder `sounds` inside `annotator` and another subfolder `wave_files` inside `sounds`. Add audio files in `sounds`.
 
 Step 4: Open the `app.R` and click on icon in read rectangle. You will be directed to a window as shown in the picture below. To publish the app, please check both app.R and sounds, and hit `Publish`. The process may take a while, depending on the size of audio files. When completing, you will obtain a link of the published app. 
 
