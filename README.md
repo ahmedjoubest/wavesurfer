@@ -19,7 +19,7 @@ interface of [‘wavesurfer.js’](https://wavesurfer-js.org) JavaScript
 library and it is based on [‘htmlwidgets’](http://www.htmlwidgets.org/)
 R package.
 
-<img src="inst/img/annotator3.gif">
+<img src="inst/img/annotator3.gif" width="800" height="600">
 
 ## Installation and Using in R
 
@@ -56,11 +56,11 @@ Step 1: Choose an audio file to begin with.
 
 Step 2: Drag on the black area above the spectrogram to select the start and end of the region to be labelled. Also, type a name to the label at the box under "Region labeller". 
 
-<img src="inst/img/Step2.png">
+<img src="inst/img/Step2.png" width="200" height="200">
 
 Step 3: When finishing annotating an audio file, click "Save". You may also delete the annotation by clicking "Clear all regions".
 
-<img src="inst/img/Step3.png">
+<img src="inst/img/Step3.png" width="200" height="200">
 
 ## Deploying on the Web
 
