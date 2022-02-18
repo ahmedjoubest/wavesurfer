@@ -68,7 +68,7 @@ You may deploy the app on a website.
 
 Step 1: Sign up or login an account on https://www.rstudio.com/products/shinyapps/.
 
-Step 2: Connect Rstudio to shinyapps.io account using the following codes:
+Step 2: Connect Rstudio to shinyapps.io account using the following codes in R:
 
 ```r
 install.packages('rsconnect')
@@ -85,7 +85,11 @@ which requires three inputs:
   - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);
   - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
 
-Step 3: Download the folder 
+Step 3: Download the folder `annotator` to your local computer. Open the subfolder `sounds-->wave_files` and add audio files. 
+
+Step 4: Open the `app.R` and click <img src="inst/img/publish icon.png" width="10"> on the top right
+
+
 
 
 
