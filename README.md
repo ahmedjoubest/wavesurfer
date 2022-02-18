@@ -52,7 +52,7 @@ Running the above codes, you will be re-directed to a browser. To annotate audio
 
 Step 1: Choose an audio file to begin with. 
 
-<img src="inst/img/Step1.png">
+<img src="inst/img/Step1.png" width="200" height="200">
 
 Step 2: Drag on the black area above the spectrogram to select the start and end of the region to be labelled. Also, type a name to the label at the box under "Region labeller". 
 
