@@ -82,8 +82,8 @@ setAccountInfo(name='',
 which requires three inputs:
 
   - `name` a string of your shinyapps.io account name;
-  - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens);
-  - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Accoount --> Tokens).
+  - `token` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Account --> Tokens);
+  - `secret` a string of your password, which can be found by logging to your shinyapps.io account (click the menu on the lefe side: Account --> Tokens).
 
 Step 3: Download the folder `annotator` to your local computer. Create a subfolder `sounds` inside `annotator` and another subfolder `wave_files` inside `sounds`. Add audio files in `sounds`.
 
