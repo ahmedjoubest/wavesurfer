@@ -9,6 +9,18 @@
 #'
 #' @param audio a character. A path or a URL for the audio. E.g. "path/to/audio.mp3"
 #'  or "https://wavesurfer-js.org/example/media/demo.wav".
+#' @param backend 'WebAudio' `'WebAudio'|'MediaElement'|'MediaElementWebAudio'` In most cases
+#' you don't have to set this manually. MediaElement is a fallback for unsupported browsers.
+#' MediaElementWebAudio allows to use WebAudio API also with big audio files, loading audio like with
+#' MediaElement backend (HTML5 audio tag). You have to use the same methods of MediaElement backend for loading and
+#' playback, giving also peaks, so the audio data are not decoded. In this way you can use WebAudio features, like filters,
+#' also with audio with big duration. For example:
+#' ` wavesurfer.load(url | HTMLMediaElement, peaks, preload, duration);
+#'   wavesurfer.play();
+#'   wavesurfer.setFilter(customFilter);
+#' `
+#' @param mediaControls false (Use with backend `MediaElement` or `MediaElementWebAudio`)
+#' this enables the native controls for the media element
 #' @param playPauseWithSpaceBar a logical. If TRUE, spacebar toggle play/pause. Default is TRUE.
 #' @param audioRate a numeric. Speed at which to play audio. Lower number is
 #' slower. Default is 1.
@@ -38,6 +50,8 @@
 #' additional canvases will be used to render the waveform, which is useful for very
 #' large waveforms that may be too wide for browsers to draw on a single canvas. This
 #' parameter is only applicable to the `MultiCanvas` renderer.
+#' @param mediaType 'audio' (Use with backend `MediaElement` or `MediaElementWebAudio`)
+#' 'audio'|'video'` ('video' only for `MediaElement`)
 #' @param minPxPerSec a numeric. Minimum number of pixels per second of audio.
 #' Default is 50.
 #' @param normalize a logical. If TRUE, normalize by the maximum peak instead of 1.
@@ -223,6 +237,8 @@
 #'
 #' @export
 wavesurfer <- function(audio = NULL,
+                       backend='WebAudio',
+                       mediaControls= TRUE,
                        playPauseWithSpaceBar = TRUE,
                        audioRate = 1,
                        autoCenter = TRUE,
@@ -237,6 +253,7 @@ wavesurfer <- function(audio = NULL,
                        interact = TRUE,
                        loopSelection = TRUE,
                        maxCanvasWidth = 4000,
+                       mediaType = 'audio',
                        minPxPerSec = 20,
                        normalize = FALSE,
                        progressColor = '#555',
@@ -249,11 +266,13 @@ wavesurfer <- function(audio = NULL,
                        height = NULL,
                        elementId = NULL,
                        annotations = NULL,
-                       visualization = 'wave') {
+                       visualization = 'spectrogram') {
 
   settings = list(
     playPauseWithSpaceBar = playPauseWithSpaceBar,
     audioRate = audioRate,
+    backend = backend,
+    mediaControls= mediaControls,
     autoCenter = autoCenter,
     backgroundColor = backgroundColor,
     barHeight = barHeight,
@@ -266,6 +285,7 @@ wavesurfer <- function(audio = NULL,
     interact = interact,
     loopSelection = loopSelection,
     maxCanvasWidth = maxCanvasWidth,
+    mediaType = mediaType,
     minPxPerSec = minPxPerSec,
     normalize = normalize,
     progressColor = progressColor,
@@ -303,7 +323,7 @@ wavesurfer <- function(audio = NULL,
     height = height,
     package = 'wavesurfer',
     elementId = elementId,
-    sizingPolicy = sizingPolicy(
+    sizingPolicy = htmlwidgets::sizingPolicy(
       defaultHeight = "100%",
       viewer.fill = TRUE,
       browser.fill = TRUE,
@@ -375,7 +395,7 @@ runExample <- function(example = c("annotator", "microphone", "plugins", "decora
 #'
 #' @param wavs_folder
 #' @param annotations_folder
-#' 
+#'
 #' @import shiny
 #' @export
 
@@ -393,7 +413,7 @@ annotator_app <- function(wavs_folder, annotations_folder, labels = NULL){
 shiny::addResourcePath("wav", wav_folder)
 
 ui <- fluidPage(
-  
+
   # Application title
   titlePanel("Annotator"),
   fluidRow(
@@ -408,7 +428,7 @@ ui <- fluidPage(
       shinyWidgets::materialSwitch("spectrogram", "Bigger spectrogram", inline = TRUE)
     )
   ),
-  
+
   fluidRow(
     column(
       width = 12,
@@ -456,45 +476,47 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
-  
+
   update_audio_df <- function() {
-    
+
     tibble::tibble(
       file_name = list.files(wav_folder),
       annotated = file_name %in% stringr::str_replace_all(list.files(annotation_folder, ".rds$"), "rds$", "wav")
     )
   }
-  
+
   audio_df <- reactiveVal(value = update_audio_df())
   selected_audio <- reactiveVal(as.character(update_audio_df()[1,"file_name", drop = TRUE]))
-  
+
   output$audio_ui <- renderUI({
     shiny::p(shiny::strong("Current audio: "), selected_audio())
   })
-  
+
   output$my_ws <- renderWavesurfer({
     req(!is.null(selected_audio()))
-    
+
     # look if there is regions already annotated
     annotations_file <- stringr::str_replace_all(stringr::str_replace_all(selected_audio(), "wav$", "rds"), "^.*/", "")
     annotations_file <- paste0(annotation_folder, "/", annotations_file)
-    
+
     if(file.exists(annotations_file)) {
       annotations_df <- readr::read_rds(annotations_file)
     } else {
       annotations_df <- NULL
     }
-    
+
     wavesurfer(
       paste0("wav/", selected_audio()),
       annotations = annotations_df,
-      visualization = 'spectrogram'
+      #mediaType = "video",
+      backend = 'MediaElement',
+      visualization = 'wave'
     ) %>%
       ws_annotator() %>%
       ws_minimap(height = 100, waveColor = "#F8766D", progressColor = "#00BFC4") %>%
       ws_cursor()
   })
-  
+
   # controllers
   observeEvent(input$play, ws_play("my_ws"))
   observeEvent(input$pause, ws_pause("my_ws"))
@@ -504,37 +526,37 @@ server <- function(input, output, session) {
   observeEvent(input$stop, ws_stop("my_ws"))
   observe({ws_set_volume("my_ws", input$volume/50 )})
   observe({ws_zoom("my_ws", input$zoom )})
-  
+
   # save
   save <- function(audio_file_name, regions_df) {
     annotations <- stringr::str_replace_all(audio_file_name, paste0(sub('.*\\.', '', audio_file_name), "$"), "rds")
     regions <- regions_df %>% dplyr::mutate(audio_id = audio_file_name)
     readr::write_rds(x = regions, path = paste0(annotation_folder, "/", annotations))
   }
-  
+
   # delete
   delete <- function(audio_file_name) {
     annotations <- stringr::str_replace_all(audio_file_name, paste0(sub('.*\\.', '', audio_file_name), "$"), "rds")
     file.remove(paste0(annotation_folder, "/", annotations))
   }
-  
+
   observeEvent(input$save, {
     req(!is.null(selected_audio()))
-    
+
     save(selected_audio(), input$my_ws_regions)
-    
+
     # update audio_df
     audio_df(update_audio_df())
   })
-  
-  
+
+
   # clear all regions
   observeEvent(input$clear_regions, {
     ws_clear_regions("my_ws")
     delete(selected_audio())
     audio_df(update_audio_df())
   })
-  
+
   # bigger spectrogram
   observe({
     if(input$spectrogram) {
@@ -543,16 +565,16 @@ server <- function(input, output, session) {
       ws_destroy_spectrogram("my_ws")
     }
   })
-  
+
   # the current region selected
   output$current_region <- renderReactable({
     input$my_ws_selected_region %>% reactable()
   })
-  
+
   # table of all regions
   output$regions <- renderReactable({
     req(nrow(input$my_ws_regions) > 0)
-    
+
     input$my_ws_regions %>%
       reactable(
         selectionId = "regions_df_selected_region",
@@ -571,7 +593,7 @@ server <- function(input, output, session) {
         )
       )
   })
-  
+
   # table of audios from wav_folder
   output$audios <- renderReactable({
     req(!is.null(audio_df()))
@@ -591,20 +613,20 @@ server <- function(input, output, session) {
         )
       )
   })
-  
+
   # when audio is switched
   observeEvent(input$audio_df_selected_row, {
-    
+
     # if autosave is TRUE
     if(isolate(input$auto_save)) {
       save(isolate(selected_audio()), isolate(input$my_ws_regions))
     }
-    
+
     selected_audio(audio_df() %>% dplyr::slice(as.numeric(input$audio_df_selected_row)) %>% dplyr::pull(file_name))
   })
-  
-  
-  
+
+
+
   output$input <- renderPrint({
     reactiveValuesToList(input)
   })
