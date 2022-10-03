@@ -2,13 +2,33 @@ if(!require(shinyWidgets)) install.packages(shinyWidgets)
 library(shiny)
 library(wavesurfer)
 library(reactable)
-wav_folder <- "C:/Users/yassi/Desktop/waveteste/wav/"
+wav_folder <- "C:/Users/yassi/Desktop/waveteste/wav"
 annotation_folder <- "C:/Users/yassi/Desktop/waveteste/"
 
 # make it available to shiny
 shiny::addResourcePath("wav", wav_folder)
 
+# read videos  in  the directory to use them as an argument for the initialize_video()
+# function at the beggining of the UI element for debug purposes
+videos <- paste0('wav/',dir("C:/Users/yassi/Desktop/waveteste/wav"))
+initialize_video <- function(videos) {
+  tagList(
+    lapply(
+      videos,
+      function(x){
+        return(
+          tags$audio(id="random_id",style="display:block; margin: 0 auto;", src=x, type="video/mp4", width="0px",
+                     )
+
+        )
+      }
+    )
+  )
+}
 ui <- fluidPage(
+
+  # quick fix for the incompatibility google chrome - mediaelement backend
+  initialize_video(videos),
 
   # Application title
   titlePanel("Annotator"),
@@ -26,18 +46,25 @@ ui <- fluidPage(
   ),
 
   fluidRow(
+    column(2),
     column(
-      width = 12,
+      width = 8,
       # a <- "sample1.mp4",
 
       #tags$video(id="video2", type = "video/mp4",src = "C:\\Users\\yassi\\Desktop\\waveteste\\wav\\nasa.mp4", controls = "controls")),
-      uiOutput("video"),
+      uiOutput("video")
       # tags$video(id="video2",style="display:block; margin: 0 auto;", src="C:\\Users\\yassi\\Desktop\\waveteste\\wav\\nasa.mp4", type="video/mp4", width="800")),
     ),
-    column(
-      width = 12,
-      # wavesurferOutput("my_ws")
-    ),
+    column(2)),
+  # column(
+  #  width = 12,
+  # wavesurferOutput("my_ws")
+
+  # tags$video(id="video2",style="display:block; margin: 0 auto;", src="wav\\nasa.mp4", type="video/mp4", width="100"),
+  # tags$video(id="video2",style="display:block; margin: 0 auto;", src="wav\\sample1.mp4", type="video/mp4", width="100"),
+  # tags$video(id="video2",style="display:block; margin: 0 auto;", src="wav\\SampleVideo.mp4", type="video/mp4", width="100"),
+  #   ),
+  fluidRow(
     column(
       width = 6,
       actionButton("play", "", icon = icon("play")),
@@ -82,13 +109,13 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 
   #this addresourcepath is maybe useless
-  addResourcePath(prefix = "videos", directoryPath = wav_folder)
+  #addResourcePath( prefix = 'wav',directoryPath = wav_folder)
 
   update_audio_df <- function() {
 
     tibble::tibble(
       file_name = list.files(wav_folder),
-      annotated = file_name %in% stringr::str_replace_all(list.files(annotation_folder, ".rds$"), "rds$", "wav")
+      annotated = file_name %in% stringr::str_replace_all(list.files(annotation_folder, ".rds$"), "rds$", "mp4")
     )
   }
 
@@ -104,14 +131,14 @@ server <- function(input, output, session) {
         tagList(
           tags$video(
             id="video", src = paste0("wav\\",selected_audio()), type = "video/mp4",
-            style="display:block; margin: 0 auto;", width="0"),
+            style="display:block; margin: 0 auto;", width="0"),br(),
           wavesurferOutput("my_ws")
         )
       }else{
         tagList(
           tags$video(
             id="video", src = paste0("wav\\",selected_audio()), type = "video/mp4",
-            style="display:block; margin: 0 auto;", width="800"),
+            style="display:block; margin: 0 auto;", width="800"),br(),
           wavesurferOutput("my_ws")
         )
       }
@@ -127,7 +154,7 @@ server <- function(input, output, session) {
     req(!is.null(selected_audio()))
 
     # look if there is regions already annotated
-    annotations_file <- stringr::str_replace_all(stringr::str_replace_all(selected_audio(), "wav$", "rds"), "^.*/", "")
+    annotations_file <- stringr::str_replace_all(stringr::str_replace_all(selected_audio(), "mp4$", "rds"), "^.*/", "")
     annotations_file <- paste0(annotation_folder, "/", annotations_file)
 
     if(file.exists(annotations_file)) {
@@ -138,19 +165,25 @@ server <- function(input, output, session) {
     wavesurfer(
       paste0("wav/", selected_audio()),
       annotations = annotations_df,
-      #mediaType = 'video',
+      mediaType = 'video',
+      pixelRatio = 1,
+      minPxPerSec = 100,
+      normalize = TRUE,
+      scrollParent = TRUE,
       backend = 'MediaElement',
-      mediaControls = FALSE,
+      #mediaControls = TRUE,
       visualization = 'wave'
     ) %>%
       ws_annotator() %>%
-      ws_minimap(height = 100, waveColor = "#F8766D", progressColor = "#00BFC4") %>%
+      ws_minimap(height = 35, waveColor = "#F8766D", progressColor = "#00BFC4")%>%
       ws_cursor()
+    #ws_load(selected_audio())
   })
 
   # controllers
   observeEvent(input$play, ws_play("my_ws"))
   observeEvent(input$pause, ws_pause("my_ws"))
+  observeEvent(selected_audio(), ws_load("my_ws"))
   observeEvent(input$mute, ws_toggle_mute("my_ws"))
   observeEvent(input$skip_forward, ws_skip_forward("my_ws", 3))
   observeEvent(input$skip_backward, ws_skip_backward("my_ws", 3))

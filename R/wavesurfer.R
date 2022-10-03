@@ -250,11 +250,11 @@ wavesurfer <- function(audio = NULL,
                        cursorColor = '#333',
                        fillParent = TRUE,
                        forceDecode = FALSE,
-                       hideScrollbar = FALSE,
+                       hideScrollbar = TRUE,
                        interact = TRUE,
                        loopSelection = TRUE,
                        maxCanvasWidth = 4000,
-                       mediaType = 'audio',
+                       mediaType = 'video',
                        minPxPerSec = 100,
                        normalize = FALSE,
                        progressColor = '#555',
@@ -267,7 +267,7 @@ wavesurfer <- function(audio = NULL,
                        height = NULL,
                        elementId = NULL,
                        annotations = NULL,
-                       visualization = 'spectrogram') {
+                       visualization = 'wave') {
 
   settings = list(
     playPauseWithSpaceBar = playPauseWithSpaceBar,
@@ -402,6 +402,8 @@ runExample <- function(example = c("annotator", "microphone", "plugins", "decora
 #' @export
 
 
+
+
 annotator_app <- function(wavs_folder, annotations_folder, labels = NULL){
   if(!require(shinyWidgets)) install.packages(shinyWidgets)
   library(shiny)
@@ -510,8 +512,8 @@ server <- function(input, output, session) {
     wavesurfer(
       paste0("wav/", selected_audio()),
       annotations = annotations_df,
-      #mediaType = "video",
-      #backend = 'MediaElement',
+      mediaType = "video",
+      backend = 'MediaElement',
       visualization = 'wave'
     ) %>%
       ws_annotator() %>%

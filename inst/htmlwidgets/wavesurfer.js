@@ -14,9 +14,9 @@ HTMLWidgets.widget({
 
     //plugins pre-defined options
     var pluginOptions = {
-        microphone: {
-            deferInit: true
-        },
+        //microphone: {
+        //    deferInit: true
+        //},
         regions: {
             dragSelection: true,
             deferInit: true
@@ -27,21 +27,21 @@ HTMLWidgets.widget({
     wsf = WaveSurfer.create({
         container: container,
         height: 100,
-        //pixelRatio: 1,
-        //minPxPerSec: 20,
+        pixelRatio: 1,
+        minPxPerSec: 100,
         wavaColor: "#ff0933",
         colorMap: 'magma',
-        //scrollParent: true,
-        //normalize: true,
+        mediaType: 'video',
+        scrollParent: true,
+        normalize: true,
         //splitChannels: false,
         removeMediaElementOnDestroy: true,
         backend: 'MediaElement',
         plugins: [
           WaveSurfer.regions.create(pluginOptions.regions),
-          WaveSurfer.microphone.create(pluginOptions.microphone)
+          //WaveSurfer.microphone.create(pluginOptions.microphone)
         ]
     });
-
 
     // Init
     // var wsf = WaveSurfer.create({
@@ -66,6 +66,7 @@ HTMLWidgets.widget({
 
         wsf.params.playPauseWithSpaceBar = x.settings.playPauseWithSpaceBar;
         wsf.params.audioRate = x.settings.audioRate;
+        wsf.params.pixelRatio = x.settings.pixelRatio;
         wsf.params.backend = x.settings.backend;
         wsf.params.mediaControls = x.settings.mediaControls;
         wsf.params.autoCenter = x.settings.autoCenter;
@@ -97,14 +98,13 @@ HTMLWidgets.widget({
         wsf.insertAnnotations = insertAnnotations;
         wsf.elementId = elementId;
 
+
         // doc
         // initialize with audio
-        // if(!x.audio) {
-        //  wsf.load(peaks = [0]);
-        // } else {
-        // wsf.load(x.audio);
-        //  }
-
+         //if(!x.audio) {
+         // wsf.load(peaks = [0]);
+         //} else {
+          //}
         //get regions data to pass to R
         function get_regions_data(regionsList, e) {
             var current_regions = regionsList;
@@ -165,6 +165,8 @@ HTMLWidgets.widget({
         }
 
         if (!initialized) {
+          let mediaElt = document.querySelector('video');
+          wsf.load(mediaElt);
           // play_pause with spacebar
           window.addEventListener("keydown", onKeyDown, false);
           initialized = true;
@@ -172,15 +174,13 @@ HTMLWidgets.widget({
           // attach the wsf object and the widget to the DOM
           container.wsf = wsf;
           container.widget = that;
-          let mediaElt = document.querySelector('video');
-          wsf.load(document.querySelector('video'));
+
 
           // attach the wsf object and the widget to the DOM
           container.wsf = wsf;
 
           // set listeners to events and pass data back to Shiny
           if (HTMLWidgets.shinyMode) {
-
             wsf.on('finish', function () {
               Shiny.onInputChange(elementId + "_is_playing", wsf.isPlaying());
               Shiny.onInputChange(elementId + "_current_time", wsf.getCurrentTime());
@@ -208,7 +208,6 @@ HTMLWidgets.widget({
             });
 
             wsf.on('ready', function () {
-
               //add regions passed by the user
               wsf.clearRegions();
               insertAnnotations(wsf.initialAnnotations);
@@ -227,7 +226,6 @@ HTMLWidgets.widget({
               Shiny.onInputChange(elementId + "_playback_rate", wsf.getPlaybackRate());
 
               if(wsf.getActivePlugins().regions) {
-
                 let regions = get_regions_data(wsf.regions.list);
                 regions = regions ? regions : '{}';
                 Shiny.onInputChange(elementId + "_regions:regionsDF", regions);
@@ -345,7 +343,6 @@ HTMLWidgets.widget({
       },
 
       wsf: wsf,
-
       initInactivePlugin: function (plugin) {
         if(!wsf.getActivePlugins()[plugin]) {
           wsf.initPlugin(plugin);
@@ -535,10 +532,11 @@ HTMLWidgets.widget({
       ws_load: function(message) {
         if (!wsf.isReady) {
           setTimeout(() => this.ws_load(message), 1000);
-          return;
+         return;
         }
         wsf.load(message.url, message.peaks, message.preload, message.duration);
       },
+
 
       ws_seek_to: function(message) {
         if (!wsf.isReady) {
