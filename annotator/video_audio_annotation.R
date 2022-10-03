@@ -141,7 +141,6 @@ server <- function(input, output, session) {
       #mediaType = 'video',
       backend = 'MediaElement',
       mediaControls = FALSE,
-      minPxPerSec = 20,
       visualization = 'wave'
     ) %>%
       ws_annotator() %>%

@@ -27,7 +27,7 @@ HTMLWidgets.widget({
     wsf = WaveSurfer.create({
         container: container,
         height: 100,
-        pixelRatio: 1,
+        //pixelRatio: 1,
         //minPxPerSec: 20,
         wavaColor: "#ff0933",
         colorMap: 'magma',
