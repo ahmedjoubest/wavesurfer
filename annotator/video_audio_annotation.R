@@ -66,7 +66,7 @@ ui <- fluidPage(
   #   ),
   fluidRow(
     column(
-      width = 6,
+      width = 3,
       actionButton("play", "", icon = icon("play")),
       actionButton("pause", "", icon = icon("pause")),
       actionButton("stop", "", icon = icon("stop")),
@@ -74,6 +74,12 @@ ui <- fluidPage(
       actionButton("skip_forward", "", icon = icon("forward")),
       actionButton("mute", "", icon = icon("volume-off"))
     ),
+
+  column(
+    width =3,
+    sliderInput("zoom", "Zoom", min = 1, max = 1000, value = 100)
+    ),
+
     column(
       width = 6,
       actionButton("save", "Save", icon = icon("save")),
@@ -176,7 +182,8 @@ server <- function(input, output, session) {
     ) %>%
       ws_annotator() %>%
       ws_minimap(height = 35, waveColor = "#F8766D", progressColor = "#00BFC4")%>%
-      ws_cursor()
+      ws_cursor()%>%
+      ws_timeline()
     #ws_load(selected_audio())
   })
 

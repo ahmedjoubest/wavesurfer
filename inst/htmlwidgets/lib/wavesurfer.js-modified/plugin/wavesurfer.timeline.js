@@ -1,126 +1,42 @@
 /*!
- * wavesurfer.js timeline plugin 3.0.0 (2019-09-09)
- * https://github.com/katspaugh/wavesurfer.js
+ * wavesurfer.js timeline plugin 6.2.0 (2022-05-16)
+ * https://wavesurfer-js.org
  * @license BSD-3-Clause
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("timeline", [], factory);
+		define("WaveSurfer", [], factory);
 	else if(typeof exports === 'object')
-		exports["timeline"] = factory();
+		exports["WaveSurfer"] = factory();
 	else
 		root["WaveSurfer"] = root["WaveSurfer"] || {}, root["WaveSurfer"]["timeline"] = factory();
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "localhost:8080/dist/plugin/";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/plugin/timeline.js");
-/******/ })
-/************************************************************************/
-/******/ ({
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/plugin/timeline.js":
-/*!********************************!*\
-  !*** ./src/plugin/timeline.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
+/***/ "./src/plugin/timeline/index.js":
+/*!**************************************!*\
+  !*** ./src/plugin/timeline/index.js ***!
+  \**************************************/
+/***/ ((module, exports) => {
 
 
-Object.defineProperty(exports, "__esModule", {
+
+Object.defineProperty(exports, "__esModule", ({
   value: true
-});
-exports.default = void 0;
+}));
+exports["default"] = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * @typedef {Object} TimelinePluginParams
@@ -181,34 +97,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  *   ]
  * });
  */
-var TimelinePlugin =
-/*#__PURE__*/
-function () {
-  _createClass(TimelinePlugin, null, [{
-    key: "create",
-
-    /**
-     * Timeline plugin definition factory
-     *
-     * This function must be used to create a plugin definition which can be
-     * used by wavesurfer to correctly instantiate the plugin.
-     *
-     * @param  {TimelinePluginParams} params parameters use to initialise the plugin
-     * @return {PluginDefinition} an object representing the plugin
-     */
-    value: function create(params) {
-      return {
-        name: 'timeline',
-        deferInit: params && params.deferInit ? params.deferInit : false,
-        params: params,
-        instance: TimelinePlugin
-      };
-    } // event handlers
-
-    /** @private */
-
-  }]);
-
+var TimelinePlugin = /*#__PURE__*/function () {
   /**
    * Creates an instance of TimelinePlugin.
    *
@@ -217,29 +106,51 @@ function () {
    * @param {TimelinePluginParams} params Plugin parameters
    * @param {object} ws Wavesurfer instance
    */
-  function TimelinePlugin(params, ws) {
+  function TimelinePlugin(params, _ws) {
     var _this = this;
 
     _classCallCheck(this, TimelinePlugin);
 
-    _initialiseProps.call(this);
+    _defineProperty(this, "_onScroll", function () {
+      if (_this.wrapper && _this.drawer.wrapper) {
+        _this.wrapper.scrollLeft = _this.drawer.wrapper.scrollLeft;
+      }
+    });
 
-    /** @private */
+    _defineProperty(this, "_onRedraw", function () {
+      return _this.render();
+    });
+
+    _defineProperty(this, "_onReady", function () {
+      var ws = _this.wavesurfer;
+      _this.drawer = ws.drawer;
+      _this.pixelRatio = ws.drawer.params.pixelRatio;
+      _this.maxCanvasWidth = ws.drawer.maxCanvasWidth || ws.drawer.width;
+      _this.maxCanvasElementWidth = ws.drawer.maxCanvasElementWidth || Math.round(_this.maxCanvasWidth / _this.pixelRatio); // add listeners
+
+      ws.drawer.wrapper.addEventListener('scroll', _this._onScroll);
+      ws.on('redraw', _this._onRedraw);
+      ws.on('zoom', _this._onZoom);
+
+      _this.render();
+    });
+
+    _defineProperty(this, "_onWrapperClick", function (e) {
+      e.preventDefault();
+      var relX = 'offsetX' in e ? e.offsetX : e.layerX;
+
+      _this.fireEvent('click', relX / _this.wrapper.scrollWidth || 0);
+    });
+
     this.container = 'string' == typeof params.container ? document.querySelector(params.container) : params.container;
 
     if (!this.container) {
       throw new Error('No container for wavesurfer timeline');
     }
-    /** @private */
 
-
-    this.wavesurfer = ws;
-    /** @private */
-
-    this.util = ws.util;
-    /** @private */
-
-    this.params = this.util.extend({}, {
+    this.wavesurfer = _ws;
+    this.util = _ws.util;
+    this.params = Object.assign({}, {
       height: 20,
       notchPercentHeight: 90,
       labelPadding: 5,
@@ -258,23 +169,11 @@ function () {
       secondaryLabelInterval: this.defaultSecondaryLabelInterval,
       offset: 0
     }, params);
-    /** @private */
-
     this.canvases = [];
-    /** @private */
-
     this.wrapper = null;
-    /** @private */
-
     this.drawer = null;
-    /** @private */
-
     this.pixelRatio = null;
-    /** @private */
-
     this.maxCanvasWidth = null;
-    /** @private */
-
     this.maxCanvasElementWidth = null;
     /**
      * This event handler has to be in the constructor function because it
@@ -283,7 +182,6 @@ function () {
      *
      * Use a debounced function if `params.zoomDebounce` is defined
      *
-     * @private
      * @returns {void}
      */
 
@@ -330,7 +228,6 @@ function () {
     /**
      * Create a timeline element to wrap the canvases drawn by this plugin
      *
-     * @private
      */
 
   }, {
@@ -360,7 +257,6 @@ function () {
     /**
      * Render the timeline (also updates the already rendered timeline)
      *
-     * @private
      */
 
   }, {
@@ -377,7 +273,6 @@ function () {
     /**
      * Add new timeline canvas
      *
-     * @private
      */
 
   }, {
@@ -393,7 +288,6 @@ function () {
     /**
      * Remove timeline canvas
      *
-     * @private
      */
 
   }, {
@@ -406,7 +300,6 @@ function () {
      * Make sure the correct of timeline canvas elements exist and are cached in
      * this.canvases
      *
-     * @private
      */
 
   }, {
@@ -426,7 +319,6 @@ function () {
     /**
      * Update the dimensions and positioning style for all the timeline canvases
      *
-     * @private
      */
 
   }, {
@@ -456,7 +348,6 @@ function () {
     /**
      * Render the timeline labels and notches
      *
-     * @private
      */
 
   }, {
@@ -464,7 +355,7 @@ function () {
     value: function renderCanvases() {
       var _this3 = this;
 
-      var duration = this.wavesurfer.timeline.params.duration || this.wavesurfer.backend.getDuration();
+      var duration = this.params.duration || this.wavesurfer.backend.getDuration();
 
       if (duration <= 0) {
         return;
@@ -492,9 +383,11 @@ function () {
       var i; // build an array of position data with index, second and pixel data,
       // this is then used multiple times below
 
-      var positioning = [];
+      var positioning = []; // render until end in case we have a negative offset
 
-      for (i = 0; i < totalSeconds / timeInterval; i++) {
+      var renderSeconds = this.params.offset < 0 ? totalSeconds - this.params.offset : totalSeconds;
+
+      for (i = 0; i < renderSeconds / timeInterval; i++) {
         positioning.push([i, curSeconds, curPixel]);
         curSeconds += timeInterval;
         curPixel += pixelsPerSecond * timeInterval;
@@ -542,28 +435,34 @@ function () {
      *
      * @param {DOMString|CanvasGradient|CanvasPattern} fillStyle Fill style to
      * use
-     * @private
      */
 
   }, {
     key: "setFillStyles",
     value: function setFillStyles(fillStyle) {
       this.canvases.forEach(function (canvas) {
-        canvas.getContext('2d').fillStyle = fillStyle;
+        var context = canvas.getContext('2d');
+
+        if (context) {
+          context.fillStyle = fillStyle;
+        }
       });
     }
     /**
      * Set the canvas font
      *
      * @param {DOMString} font Font to use
-     * @private
      */
 
   }, {
     key: "setFonts",
     value: function setFonts(font) {
       this.canvases.forEach(function (canvas) {
-        canvas.getContext('2d').font = font;
+        var context = canvas.getContext('2d');
+
+        if (context) {
+          context.font = font;
+        }
       });
     }
     /**
@@ -575,7 +474,6 @@ function () {
      * @param {number} y Y-position
      * @param {number} width Width
      * @param {number} height Height
-     * @private
      */
 
   }, {
@@ -593,7 +491,11 @@ function () {
         };
 
         if (intersection.x1 < intersection.x2) {
-          canvas.getContext('2d').fillRect(intersection.x1 - leftOffset, intersection.y1, intersection.x2 - intersection.x1, intersection.y2 - intersection.y1);
+          var context = canvas.getContext('2d');
+
+          if (context) {
+            context.fillRect(intersection.x1 - leftOffset, intersection.y1, intersection.x2 - intersection.x1, intersection.y2 - intersection.y1);
+          }
         }
       });
     }
@@ -603,7 +505,6 @@ function () {
      * @param {string} text Text to render
      * @param {number} x X-position
      * @param {number} y Y-position
-     * @private
      */
 
   }, {
@@ -613,18 +514,21 @@ function () {
       var xOffset = 0;
       this.canvases.forEach(function (canvas) {
         var context = canvas.getContext('2d');
-        var canvasWidth = context.canvas.width;
 
-        if (xOffset > x + textWidth) {
-          return;
+        if (context) {
+          var canvasWidth = context.canvas.width;
+
+          if (xOffset > x + textWidth) {
+            return;
+          }
+
+          if (xOffset + canvasWidth > x && context) {
+            textWidth = context.measureText(text).width;
+            context.fillText(text, x - xOffset, y);
+          }
+
+          xOffset += canvasWidth;
         }
-
-        if (xOffset + canvasWidth > x) {
-          textWidth = context.measureText(text).width;
-          context.fillText(text, x - xOffset, y);
-        }
-
-        xOffset += canvasWidth;
       });
     }
     /**
@@ -709,52 +613,72 @@ function () {
 
       return 2;
     }
+  }], [{
+    key: "create",
+    value:
+    /**
+     * Timeline plugin definition factory
+     *
+     * This function must be used to create a plugin definition which can be
+     * used by wavesurfer to correctly instantiate the plugin.
+     *
+     * @param  {TimelinePluginParams} params parameters use to initialise the plugin
+     * @return {PluginDefinition} an object representing the plugin
+     */
+    function create(params) {
+      return {
+        name: 'timeline',
+        deferInit: params && params.deferInit ? params.deferInit : false,
+        params: params,
+        instance: TimelinePlugin
+      };
+    } // event handlers
+
   }]);
 
   return TimelinePlugin;
 }();
 
-exports.default = TimelinePlugin;
-
-var _initialiseProps = function _initialiseProps() {
-  var _this5 = this;
-
-  this._onScroll = function () {
-    if (_this5.wrapper && _this5.drawer.wrapper) {
-      _this5.wrapper.scrollLeft = _this5.drawer.wrapper.scrollLeft;
-    }
-  };
-
-  this._onRedraw = function () {
-    return _this5.render();
-  };
-
-  this._onReady = function () {
-    var ws = _this5.wavesurfer;
-    _this5.drawer = ws.drawer;
-    _this5.pixelRatio = ws.drawer.params.pixelRatio;
-    _this5.maxCanvasWidth = ws.drawer.maxCanvasWidth || ws.drawer.width;
-    _this5.maxCanvasElementWidth = ws.drawer.maxCanvasElementWidth || Math.round(_this5.maxCanvasWidth / _this5.pixelRatio); // add listeners
-
-    ws.drawer.wrapper.addEventListener('scroll', _this5._onScroll);
-    ws.on('redraw', _this5._onRedraw);
-    ws.on('zoom', _this5._onZoom);
-
-    _this5.render();
-  };
-
-  this._onWrapperClick = function (e) {
-    e.preventDefault();
-    var relX = 'offsetX' in e ? e.offsetX : e.layerX;
-
-    _this5.fireEvent('click', relX / _this5.wrapper.scrollWidth || 0);
-  };
-};
-
+exports["default"] = TimelinePlugin;
 module.exports = exports.default;
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/plugin/timeline/index.js");
+/******/ 	
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
 //# sourceMappingURL=wavesurfer.timeline.js.map

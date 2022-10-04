@@ -1,126 +1,40 @@
 /*!
- * wavesurfer.js minimap plugin 3.0.0 (2019-09-09)
- * https://github.com/katspaugh/wavesurfer.js
+ * wavesurfer.js minimap plugin 6.2.0 (2022-05-16)
+ * https://wavesurfer-js.org
  * @license BSD-3-Clause
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("minimap", [], factory);
+		define("WaveSurfer", [], factory);
 	else if(typeof exports === 'object')
-		exports["minimap"] = factory();
+		exports["WaveSurfer"] = factory();
 	else
 		root["WaveSurfer"] = root["WaveSurfer"] || {}, root["WaveSurfer"]["minimap"] = factory();
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "localhost:8080/dist/plugin/";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/plugin/minimap.js");
-/******/ })
-/************************************************************************/
-/******/ ({
+})(self, () => {
+return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/plugin/minimap.js":
-/*!*******************************!*\
-  !*** ./src/plugin/minimap.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
+/***/ "./src/plugin/minimap/index.js":
+/*!*************************************!*\
+  !*** ./src/plugin/minimap/index.js ***!
+  \*************************************/
+/***/ ((module, exports) => {
 
 
-Object.defineProperty(exports, "__esModule", {
+
+Object.defineProperty(exports, "__esModule", ({
   value: true
-});
-exports.default = void 0;
+}));
+exports["default"] = void 0;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 /*eslint no-console: ["error", { allow: ["warn"] }] */
 
@@ -159,39 +73,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  *   ]
  * });
  */
-var MinimapPlugin =
-/*#__PURE__*/
-function () {
-  _createClass(MinimapPlugin, null, [{
-    key: "create",
-
-    /**
-     * Minimap plugin definition factory
-     *
-     * This function must be used to create a plugin definition which can be
-     * used by wavesurfer to correctly instantiate the plugin.
-     *
-     * @param  {MinimapPluginParams} params parameters use to initialise the plugin
-     * @return {PluginDefinition} an object representing the plugin
-     */
-    value: function create(params) {
-      return {
-        name: 'minimap',
-        deferInit: params && params.deferInit ? params.deferInit : false,
-        params: params,
-        staticProps: {},
-        instance: MinimapPlugin
-      };
-    }
-  }]);
-
+var MinimapPlugin = /*#__PURE__*/function () {
   function MinimapPlugin(params, ws) {
     var _this = this;
 
     _classCallCheck(this, MinimapPlugin);
 
-    this.params = ws.util.extend({}, ws.params, {
+    this.params = Object.assign({}, ws.params, {
       showRegions: false,
+      regionsPluginName: params.regionsPluginName || 'regions',
       showOverview: false,
       overviewBorderColor: 'green',
       overviewBorderSize: 2,
@@ -223,17 +113,10 @@ function () {
     this.drawer = new ws.Drawer(this.params.container, this.params);
     this.wavesurfer = ws;
     this.util = ws.util;
-    /**
-     * Minimap needs to listen for the `ready` and `waveform-ready` events
-     * to work with the `MediaElement` backend. The moment the `ready` event
-     * is called is different (and peaks would not load).
-     *
-     * @type {string}
-     * @see https://github.com/katspaugh/wavesurfer.js/issues/736
-     */
-
-    this.renderEvent = ws.params.backend === 'MediaElement' ? 'waveform-ready' : 'ready';
+    this.cleared = false;
+    this.renderEvent = 'redraw';
     this.overviewRegion = null;
+    this.regionsPlugin = this.wavesurfer[this.params.regionsPluginName];
     this.drawer.createWrapper();
     this.createElements();
     var isInitialised = false; // ws ready event listener
@@ -254,8 +137,8 @@ function () {
         ws.container.insertBefore(_this.params.container, null);
       }
 
-      if (_this.wavesurfer.regions && _this.params.showRegions) {
-        _this.regions();
+      if (_this.regionsPlugin && _this.params.showRegions) {
+        _this.drawRegions();
       }
 
       _this.render();
@@ -273,7 +156,9 @@ function () {
 
     this._onScroll = function (e) {
       if (!_this.draggingOverview) {
-        _this.moveOverviewRegion(e.target.scrollLeft / _this.ratio);
+        var orientedTarget = _this.util.withOrientation(e.target, _this.wavesurfer.params.vertical);
+
+        _this.moveOverviewRegion(orientedTarget.scrollLeft / _this.ratio);
       }
     };
 
@@ -293,6 +178,23 @@ function () {
         _this.drawer.progress(_this.wavesurfer.backend.getPlayedPercents());
       }
     });
+
+    this._onLoading = function (percent) {
+      if (percent >= 100) {
+        _this.cleared = false;
+        return;
+      }
+
+      if (_this.cleared === true) {
+        return;
+      }
+
+      var len = _this.drawer.getWidth();
+
+      _this.drawer.drawPeaks([0], len, 0, len);
+
+      _this.cleared = true;
+    };
 
     this._onZoom = function (e) {
       _this.render();
@@ -321,30 +223,28 @@ function () {
       this.wavesurfer.un('scroll', this._onScroll);
       this.wavesurfer.un('audioprocess', this._onAudioprocess);
       this.wavesurfer.un('zoom', this._onZoom);
+      this.wavesurfer.un('loading', this._onLoading);
       this.drawer.destroy();
       this.overviewRegion = null;
       this.unAll();
     }
   }, {
-    key: "regions",
-    value: function regions() {
+    key: "drawRegions",
+    value: function drawRegions() {
       var _this2 = this;
 
       this.regions = {};
       this.wavesurfer.on('region-created', function (region) {
         _this2.regions[region.id] = region;
-
-        _this2.renderRegions();
+        _this2.drawer.wrapper && _this2.renderRegions();
       });
       this.wavesurfer.on('region-updated', function (region) {
         _this2.regions[region.id] = region;
-
-        _this2.renderRegions();
+        _this2.drawer.wrapper && _this2.renderRegions();
       });
       this.wavesurfer.on('region-removed', function (region) {
         delete _this2.regions[region.id];
-
-        _this2.renderRegions();
+        _this2.drawer.wrapper && _this2.renderRegions();
       });
     }
   }, {
@@ -362,9 +262,9 @@ function () {
       Object.keys(this.regions).forEach(function (id) {
         var region = _this3.regions[id];
 
-        var width = _this3.drawer.width * ((region.end - region.start) / _this3.wavesurfer.getDuration());
+        var width = _this3.getWidth() * ((region.end - region.start) / _this3.wavesurfer.getDuration());
 
-        var left = _this3.drawer.width * (region.start / _this3.wavesurfer.getDuration());
+        var left = _this3.getWidth() * (region.start / _this3.wavesurfer.getDuration());
 
         var regionElement = _this3.util.style(document.createElement('region'), {
           height: 'inherit',
@@ -386,7 +286,8 @@ function () {
       this.drawer.createElements();
 
       if (this.params.showOverview) {
-        this.overviewRegion = this.util.style(document.createElement('overview'), {
+        this.overviewRegion = this.util.withOrientation(this.drawer.wrapper.appendChild(document.createElement('overview')), this.wavesurfer.params.vertical);
+        this.util.style(this.overviewRegion, {
           top: 0,
           bottom: 0,
           width: '0px',
@@ -397,7 +298,6 @@ function () {
           zIndex: 2,
           opacity: this.params.overviewOpacity
         });
-        this.drawer.wrapper.appendChild(this.overviewRegion);
       }
     }
   }, {
@@ -407,6 +307,7 @@ function () {
       window.addEventListener('orientationchange', this._onResize, true);
       this.wavesurfer.on('audioprocess', this._onAudioprocess);
       this.wavesurfer.on('seek', this._onSeek);
+      this.wavesurfer.on('loading', this._onLoading);
 
       if (this.params.showOverview) {
         this.wavesurfer.on('scroll', this._onScroll);
@@ -443,18 +344,24 @@ function () {
       }
 
       if (this.params.showOverview) {
-        this.overviewRegion.addEventListener('mousedown', function (event) {
+        this.overviewRegion.domElement.addEventListener('mousedown', function (e) {
+          var event = _this4.util.withOrientation(e, _this4.wavesurfer.params.vertical);
+
           _this4.draggingOverview = true;
           relativePositionX = event.layerX;
           positionMouseDown.clientX = event.clientX;
           positionMouseDown.clientY = event.clientY;
         });
-        this.drawer.wrapper.addEventListener('mousemove', function (event) {
+        this.drawer.wrapper.addEventListener('mousemove', function (e) {
           if (_this4.draggingOverview) {
+            var event = _this4.util.withOrientation(e, _this4.wavesurfer.params.vertical);
+
             _this4.moveOverviewRegion(event.clientX - _this4.drawer.container.getBoundingClientRect().left - relativePositionX);
           }
         });
-        this.drawer.wrapper.addEventListener('mouseup', function (event) {
+        this.drawer.wrapper.addEventListener('mouseup', function (e) {
+          var event = _this4.util.withOrientation(e, _this4.wavesurfer.params.vertical);
+
           if (positionMouseDown.clientX - event.clientX === 0 && positionMouseDown.clientX - event.clientX === 0) {
             seek = true;
             _this4.draggingOverview = false;
@@ -482,7 +389,9 @@ function () {
         this.overviewWidth = this.drawer.container.offsetWidth / this.ratio;
         this.overviewPosition = 0;
         this.moveOverviewRegion(this.wavesurfer.drawer.wrapper.scrollLeft / this.ratio);
-        this.overviewRegion.style.width = this.overviewWidth + 'px';
+        this.util.style(this.overviewRegion, {
+          width: this.overviewWidth + 'px'
+        });
       }
     }
   }, {
@@ -496,22 +405,85 @@ function () {
         this.overviewPosition = this.drawer.container.offsetWidth - this.overviewWidth;
       }
 
-      this.overviewRegion.style.left = this.overviewPosition + 'px';
+      this.util.style(this.overviewRegion, {
+        left: this.overviewPosition + 'px'
+      });
 
       if (this.draggingOverview) {
         this.wavesurfer.drawer.wrapper.scrollLeft = this.overviewPosition * this.ratio;
       }
+    }
+  }, {
+    key: "getWidth",
+    value: function getWidth() {
+      return this.drawer.width / this.params.pixelRatio;
+    }
+  }], [{
+    key: "create",
+    value:
+    /**
+     * Minimap plugin definition factory
+     *
+     * This function must be used to create a plugin definition which can be
+     * used by wavesurfer to correctly instantiate the plugin.
+     *
+     * @param  {MinimapPluginParams} params parameters use to initialise the plugin
+     * @return {PluginDefinition} an object representing the plugin
+     */
+    function create(params) {
+      return {
+        name: 'minimap',
+        deferInit: params && params.deferInit ? params.deferInit : false,
+        params: params,
+        staticProps: {},
+        instance: MinimapPlugin
+      };
     }
   }]);
 
   return MinimapPlugin;
 }();
 
-exports.default = MinimapPlugin;
+exports["default"] = MinimapPlugin;
 module.exports = exports.default;
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/plugin/minimap/index.js");
+/******/ 	
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
 //# sourceMappingURL=wavesurfer.minimap.js.map
