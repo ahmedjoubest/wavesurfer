@@ -367,6 +367,11 @@ wavesurfer_html <- function(id, style, class, ...) {
     htmltools::tags$div(id = paste0(id, "-timeline"), style = "display: 'none'", class = class),
     htmltools::tags$div(id = id, style = style, class = class),
     htmltools::tags$div(id = paste0(id, "-spectrogram"), style = "display: 'none'", class = class),
+    # choose selectInput function in order to remove the ability to add new labels
+    # choices could be ex-ante determined in the "choices" argument
+    # remove "options" argument when using the selectInput function
+    # don't forget to reinstall the package for every change in the document with
+    # install.packages("{directory_to_the_package_folder}", repos = NULL, type="source")
     shiny::selectizeInput(
       inputId = paste0(id, "_region_labeller"),
       label = "Region labeller",

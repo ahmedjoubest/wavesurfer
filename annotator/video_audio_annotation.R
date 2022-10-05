@@ -11,7 +11,7 @@ shiny::addResourcePath("wav", wav_folder)
 # read videos  in  the directory to use them as an argument for the initialize_video()
 # function at the beggining of the UI element for debug purposes
 videos <- paste0('wav/',dir("C:/Users/yassi/Desktop/waveteste/wav"))
-initialize_video <- function(videos) {
+initialize_videos <- function(videos) {
   tagList(
     lapply(
       videos,
@@ -28,7 +28,7 @@ initialize_video <- function(videos) {
 ui <- fluidPage(
 
   # quick fix for the incompatibility google chrome - mediaelement backend
-  initialize_video(videos),
+  initialize_videos(videos),
 
   # Application title
   titlePanel("Annotator"),
@@ -184,7 +184,7 @@ server <- function(input, output, session) {
       ws_minimap(height = 35, waveColor = "#F8766D", progressColor = "#00BFC4")%>%
       ws_cursor()%>%
       ws_timeline()
-    #ws_load(selected_audio())
+      #ws_load(selected_audio())
   })
 
   # controllers
@@ -254,7 +254,7 @@ server <- function(input, output, session) {
         onClick = "select",
         highlight = TRUE,
         compact = TRUE,
-        selection = "single",
+        selection = "multiple",
         columns = list(
           audio_id = reactable::colDef("audio_id", minWidth = 260),
           label = reactable::colDef("label", minWidth = 210),
